@@ -1,0 +1,396 @@
+/* ==========================================================================
+   RESPONSIVE LAYOUTS & ACCESSIBILITY - DWARIX Technologies
+   Comprehensive cross-device support across 320px, 360px, 375px, 390px,
+   430px, 768px, 1024px, 1280px, 1440px, and 1920px viewports.
+   ========================================================================== */
+
+/* Universal Layout Safeguards */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+}
+
+.app-container {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Headings & Section Typography */
+@media (max-width: 860px) {
+  .sec-head {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (pointer: fine) {
+  .cursor {
+    display: block;
+  }
+}
+
+/* Navigation & Mobile Drawer */
+@media (max-width: 980px) {
+  .links, .nav .nav-cta {
+    display: none;
+  }
+  .burger {
+    display: grid;
+  }
+  .drawer {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: fixed;
+    inset: 76px 0 auto;
+    background: rgba(23, 26, 33, 0.98);
+    backdrop-filter: blur(20px);
+    padding: 20px 6vw 32px;
+    border-bottom: 1px solid var(--line);
+    transform: translateY(-12px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+    z-index: 65;
+  }
+  .nav.open .drawer {
+    transform: none;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .drawer a {
+    padding: 14px 4px;
+    font-family: var(--display);
+    font-size: 1.15rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color: #FFFFFF;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .drawer a:hover {
+    color: var(--amber);
+  }
+  .drawer .btn {
+    margin-top: 14px;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+/* Hero Section Adaptation */
+@media (max-width: 860px) {
+  .hero-copy {
+    padding: clamp(100px, 15vw, 140px) 0 70px;
+    max-width: 100%;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 7.5vw, 3.2rem);
+    line-height: 1.1;
+  }
+  .hero p {
+    font-size: 1.05rem;
+    margin: 20px 0 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero .ctas {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+  .hero .ctas .btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 14px 20px;
+  }
+  .scroll-cue {
+    display: none;
+  }
+}
+
+/* About & Pillars */
+@media (max-width: 900px) {
+  .pillars {
+    grid-template-columns: 1fr 1fr;
+  }
+  .pillar {
+    border-right: 0;
+    border-bottom: 1px solid #CFC6B7;
+    padding-bottom: 26px;
+  }
+  .statement {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .pillars {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .pillar {
+    margin-right: 0;
+    padding: 16px 0;
+  }
+  .about-top {
+    margin-bottom: 40px;
+  }
+  .about h2 {
+    font-size: clamp(1.8rem, 7vw, 2.8rem);
+  }
+  .statement {
+    font-size: clamp(1.15rem, 5vw, 1.6rem);
+  }
+}
+
+/* Services */
+@media (max-width: 1380px) {
+  .svc-index {
+    display: none;
+  }
+}
+
+@media (max-width: 960px) {
+  .scene, .scene.flip {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 50px 0;
+    gap: 28px;
+  }
+  .scene .vis {
+    order: -1;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  .scene.flip .scene-copy {
+    order: 2;
+  }
+  .scene-copy ul {
+    grid-template-columns: 1fr;
+  }
+  .ghost {
+    top: 0;
+    translate: 0 0;
+    font-size: 32vw;
+    opacity: 0.05;
+  }
+}
+
+/* Why DWARIX Grid */
+@media (max-width: 960px) {
+  .why-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .why-cell.feature {
+    grid-row: auto;
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+  .why-cell.feature {
+    grid-column: auto;
+  }
+}
+
+/* Development Process (Horizontal Rail on Mobile) */
+@media (max-width: 960px) {
+  .hz-track {
+    flex-direction: column;
+    width: auto;
+    padding: 30px 4vw 0 calc(4vw + 40px);
+  }
+  .hz-rail {
+    top: 30px;
+    bottom: 0;
+    left: calc(4vw + 10px);
+    right: auto;
+    width: 2px;
+    height: auto;
+  }
+  .hz-rail i {
+    transform-origin: top;
+    transform: scaleY(0);
+  }
+  .pcard {
+    width: auto;
+    min-height: 0;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .pcard .dot {
+    top: 38px;
+    left: -41px;
+  }
+  .pcard .big {
+    font-size: 3rem;
+    margin-bottom: 0;
+  }
+  .overlay-hint {
+    display: none;
+  }
+}
+
+/* Technologies Section */
+@media (max-width: 960px) {
+  .tech-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .tech-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .tech-group {
+    padding: 20px;
+  }
+  .tm-row .chip {
+    font-size: 0.9rem;
+    padding: 8px 14px 8px 10px;
+  }
+}
+
+/* Portfolio Work Grid */
+@media (max-width: 960px) {
+  .projects {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .proj, .proj.wide {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .projects {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .filters {
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .filter {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Contact Form Grid */
+@media (max-width: 960px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  #form, .contact-form {
+    grid-template-columns: 1fr;
+    padding: 24px 18px;
+    border-radius: 20px;
+  }
+  #form .f {
+    grid-column: span 1;
+  }
+  .info {
+    gap: 16px;
+  }
+}
+
+/* Footer Section */
+@media (max-width: 860px) {
+  .foot {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 520px) {
+  .foot {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .foot-bot {
+    flex-direction: column-reverse;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .wordmark {
+    font-size: clamp(3rem, 15vw, 6rem);
+    margin-top: 36px;
+  }
+}
+
+/* Ultra-Compact Screens (320px to 400px: iPhone SE, Galaxy Fold, Small Android) */
+@media (max-width: 400px) {
+  .wrap {
+    width: calc(100% - 24px);
+    padding-inline: 0;
+  }
+  .brand b {
+    font-size: 0.92rem;
+  }
+  .brand img {
+    width: 36px;
+    height: 36px;
+  }
+  .hero h1 {
+    font-size: 1.85rem;
+    line-height: 1.15;
+  }
+  .hero p {
+    font-size: 0.95rem;
+  }
+  .filters {
+    gap: 6px;
+  }
+  .filter {
+    padding: 6px 12px;
+    font-size: 0.78rem;
+  }
+  .proj h3 {
+    font-size: 1.15rem;
+  }
+  .proj .meta {
+    padding: 16px;
+  }
+  .contact-grid {
+    gap: 28px;
+  }
+  #form, .contact-form {
+    padding: 18px 14px;
+  }
+  .btn {
+    padding: 12px 18px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Accessibility: Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .hero h1 .ln span, .hero p, .hero .ctas {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  .modal-card {
+    transform: none !important;
+    transition: none !important;
+  }
+}

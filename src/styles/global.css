@@ -1,0 +1,45 @@
+/* ==========================================================================
+   GLOBAL STYLES & RESETS - DWARIX Technologies
+   ========================================================================== */
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-padding-top:84px}
+html.lenis,html.lenis body{height:auto}
+#root{overflow-x:hidden;width:100%}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{background:var(--ink);color:var(--text);font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg,canvas{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:6px}
+.wrap{width:var(--wrap);margin-inline:auto}
+body,input,button,select,textarea,table,p,span,li,a,label{font-family:var(--body)}
+h1,h2,h3,h4,h5,h6,.brand,.mcat,.section-title,.wordmark,.filter{font-family:var(--display);letter-spacing:-.025em;line-height:1.08}
+h1,h2,h3{font-weight:400}
+h2{font-size:clamp(1.9rem,4.2vw,3.4rem)}
+h3{font-size:1.25rem;font-weight:500;letter-spacing:-.01em}
+.lede{font-size:1.15rem;color:var(--muted);max-width:60ch}
+.sec{padding:clamp(88px,12vw,150px) 0;position:relative}
+.sec-head{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:end;margin-bottom:64px}
+
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em;margin-bottom:-.12em}
+.w>span{display:inline-block}
+
+/* film grain + progress + cursor */
+body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 1s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-1%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
+.progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:70;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,var(--copper),var(--amber),var(--steel-hi))}
+.cursor{position:fixed;top:0;left:0;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;border:1px solid rgba(242,160,87,.7);pointer-events:none;z-index:95;transition:width .3s,height .3s,margin .3s,background .3s,border-color .3s;mix-blend-mode:difference;display:none}
+.cursor.big{width:64px;height:64px;margin:-32px 0 0 -32px;background:rgba(242,160,87,.15);border-color:var(--amber)}
+
+
+/* loader */
+.loader{position:fixed;inset:0;z-index:100;pointer-events:none}
+.loader .half{position:absolute;left:0;right:0;height:50.5%;background:#15171C}
+.loader .top{top:0}.loader .bot{bottom:0}
+.loader .center{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:22px}
+.loader img{width:110px;height:110px;border-radius:50%;box-shadow:0 0 60px rgba(211,90,36,.45)}
+.loader .count{font-family:var(--display);font-size:.9rem;letter-spacing:.2em;color:var(--steel)}
+.loader .bar{width:160px;height:1px;background:rgba(174,180,189,.2);position:relative;overflow:hidden}
+.loader .bar i{position:absolute;inset:0;background:linear-gradient(90deg,var(--copper),var(--amber));transform-origin:left;transform:scaleX(0)}
+.no-motion .loader{display:none}

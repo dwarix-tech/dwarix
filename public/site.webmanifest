@@ -1,0 +1,17 @@
+{
+  "name": "DWARIX Technologies",
+  "short_name": "DWARIX",
+  "description": "Intelligent software, AI, web and mobile development for startups and businesses.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1B1E24",
+  "theme_color": "#1B1E24",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
+

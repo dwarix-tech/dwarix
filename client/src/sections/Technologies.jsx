@@ -6,11 +6,69 @@ import { fetchTechnologies } from '../services/api';
 import { subscribeToEvent } from '../services/socket';
 import SectionHeading from '../components/SectionHeading';
 
+const CANONICAL_TECH_BADGES = {
+  'Python': 'Py',
+  'TensorFlow': 'TF',
+  'PyTorch': 'PT',
+  'Scikit-learn': 'SK',
+  'React': 'Re',
+  'React Native': 'RN',
+  'Flutter': 'Fl',
+  'HTML': 'HTML',
+  'CSS': 'CSS',
+  'Django': 'Dj',
+  'FastAPI': 'FA',
+  'Node.js': 'Node',
+  'PostgreSQL': 'PG',
+  'MySQL': 'SQL',
+  'MongoDB': 'Mongo',
+  'AWS': 'AWS',
+  'Docker': 'Dock',
+  'GitHub Actions': 'GH',
+  'TypeScript': 'TS',
+  'JavaScript': 'JS',
+  'Tailwind CSS': 'TW',
+  'Next.js': 'Next',
+  'Kubernetes': 'K8s',
+  'Redis': 'Red',
+  'SpeechRecognition': 'SR',
+  'OpenCV': 'CV'
+};
+
+function getTechBadge(name) {
+  if (!name) return 'TX';
+  if (CANONICAL_TECH_BADGES[name]) return CANONICAL_TECH_BADGES[name];
+
+  const clean = name.trim();
+  if (/^[A-Z0-9]{2,4}$/.test(clean)) return clean;
+
+  const words = clean.split(/[\s\-_.]+/).filter(Boolean);
+  if (words.length >= 2) {
+    return (words[0][0] + words[1][0]).toUpperCase();
+  }
+
+  const uppers = clean.replace(/[^A-Z]/g, '');
+  if (uppers.length >= 2 && uppers.length <= 4) {
+    return uppers.slice(0, 2);
+  }
+
+  return clean.slice(0, 2);
+}
+
 function TechChip({ name, color }) {
-  const badgeLetters = (name || '').replace(/[^A-Za-z]/g, '').slice(0, 2) || 'TX';
+  const badgeLetters = getTechBadge(name);
+  const isShort = badgeLetters.length <= 2;
   return (
     <span className="chip">
-      <i style={{ background: color || '#E06B2D' }}>{badgeLetters}</i>
+      <i 
+        style={{ 
+          background: color || '#E06B2D',
+          fontSize: badgeLetters.length > 3 ? '0.50rem' : badgeLetters.length === 3 ? '0.58rem' : '0.66rem',
+          letterSpacing: isShort ? '0' : '-0.03em'
+        }}
+      >
+        {badgeLetters}
+      </i>
       {name}
     </span>
   );

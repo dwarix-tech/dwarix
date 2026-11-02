@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default function AiVisual() {
+export default function AiVisual({ isLive = true }) {
   return (
-    <div className="vis v-ai" data-anim="ai" aria-hidden="true">
+    <div className={`vis v-ai ${isLive ? 'live' : ''}`} data-anim="ai" aria-hidden="true">
       <svg viewBox="0 0 480 384" preserveAspectRatio="xMidYMid meet">
         <defs>
           <linearGradient id="cu" x1="0" y1="0" x2="1" y2="1">

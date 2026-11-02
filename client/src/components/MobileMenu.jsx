@@ -14,10 +14,11 @@ export default function MobileMenu({ isOpen, onClose, activeSection, onNavigate 
   const handleLinkClick = (e, href) => {
     e.preventDefault();
     onClose();
+    const cleanId = href.replace(/^#/, '');
     if (onNavigate) {
-      onNavigate(href);
+      onNavigate(cleanId);
     } else {
-      const target = document.querySelector(href);
+      const target = document.getElementById(cleanId);
       if (target) {
         target.scrollIntoView({ behavior: 'smooth' });
       }

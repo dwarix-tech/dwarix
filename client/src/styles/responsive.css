@@ -81,8 +81,13 @@ html, body {
 
 /* Hero Section Adaptation */
 @media (max-width: 860px) {
+  .hero {
+    min-height: auto;
+    padding: 100px 0 30px;
+    align-items: flex-start;
+  }
   .hero-copy {
-    padding: clamp(100px, 15vw, 140px) 0 70px;
+    padding: 10px 0 20px;
     max-width: 100%;
   }
   .hero h1 {
@@ -91,7 +96,7 @@ html, body {
   }
   .hero p {
     font-size: 1.05rem;
-    margin: 20px 0 30px;
+    margin: 18px 0 24px;
   }
 }
 
@@ -255,8 +260,19 @@ html, body {
     padding: 20px;
   }
   .tm-row .chip {
-    font-size: 0.9rem;
-    padding: 8px 14px 8px 10px;
+    font-size: 0.88rem;
+    padding: 7px 12px 7px 8px;
+    gap: 8px;
+  }
+  .tm-row .chip i {
+    width: 26px;
+    height: 26px;
+  }
+  .tm-row#tm1 {
+    animation-duration: 28s;
+  }
+  .tm-row#tm2 {
+    animation-duration: 28s;
   }
 }
 

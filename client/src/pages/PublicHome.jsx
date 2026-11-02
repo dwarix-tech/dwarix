@@ -76,7 +76,9 @@ export default function PublicHome() {
 
   // Handle section navigation with smooth scroll
   const handleNavigate = (targetId) => {
-    const el = document.getElementById(targetId);
+    if (!targetId) return;
+    const cleanId = typeof targetId === 'string' ? targetId.replace(/^#/, '') : targetId;
+    const el = document.getElementById(cleanId);
     if (!el) return;
 
     if (lenisRef.current) {

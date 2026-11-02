@@ -222,20 +222,18 @@ export default function Hero({ onNavigate }) {
         ease: 'power4.out',
         delay: 0.2
       });
-      gsap.from(paragraph, {
-        y: 20,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        delay: 0.7
-      });
-      gsap.from(ctas, {
-        y: 20,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        delay: 0.9
-      });
+      if (paragraph) {
+        gsap.fromTo(paragraph, 
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.5 }
+        );
+      }
+      if (ctas) {
+        gsap.fromTo(ctas, 
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.7 }
+        );
+      }
     }
 
     return () => {

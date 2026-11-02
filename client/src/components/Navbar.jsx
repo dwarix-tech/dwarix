@@ -63,10 +63,11 @@ export default function Navbar({ onNavigate }) {
   const handleLinkClick = (e, href) => {
     e.preventDefault();
     closeMenu();
+    const cleanId = href.replace(/^#/, '');
     if (onNavigate) {
-      onNavigate(href);
+      onNavigate(cleanId);
     } else {
-      const target = document.querySelector(href);
+      const target = document.getElementById(cleanId);
       if (target) {
         target.scrollIntoView({ behavior: 'smooth' });
       }

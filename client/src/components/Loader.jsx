@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import logoImg from '../assets/logo.jpg';
 
-export default function Loader({ onLoaded }) {
+export default function Loader({ onLoaded, onComplete }) {
   const loaderRef = useRef(null);
   const barRef = useRef(null);
   const countRef = useRef(null);
@@ -11,11 +11,17 @@ export default function Loader({ onLoaded }) {
   const botHalfRef = useRef(null);
   const [removed, setRemoved] = useState(false);
 
+  const notifyComplete = () => {
+    document.body.classList.add('loaded');
+    if (onLoaded) onLoaded();
+    if (onComplete) onComplete();
+  };
+
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) {
       setRemoved(true);
-      if (onLoaded) onLoaded();
+      notifyComplete();
       return;
     }
 
@@ -24,7 +30,7 @@ export default function Loader({ onLoaded }) {
       defaults: { ease: 'power3.inOut' },
       onComplete: () => {
         setRemoved(true);
-        if (onLoaded) onLoaded();
+        notifyComplete();
       }
     });
 
@@ -45,13 +51,13 @@ export default function Loader({ onLoaded }) {
         .to(botHalfRef.current, { yPercent: 100, duration: 0.9, ease: 'power4.inOut' }, 1.3);
     } else {
       setRemoved(true);
-      if (onLoaded) onLoaded();
+      notifyComplete();
     }
 
     return () => {
       tl.kill();
     };
-  }, [onLoaded]);
+  }, [onLoaded, onComplete]);
 
   if (removed) return null;
 

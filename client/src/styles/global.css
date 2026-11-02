@@ -34,12 +34,25 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
 
 
 /* loader */
-.loader{position:fixed;inset:0;z-index:100;pointer-events:none}
-.loader .half{position:absolute;left:0;right:0;height:50.5%;background:#15171C}
+.loader{position:fixed;inset:0;z-index:9999;pointer-events:auto;user-select:none;overflow:hidden}
+.loader .half{position:absolute;left:0;right:0;height:50.5%;background:#14171C;z-index:1;will-change:transform}
 .loader .top{top:0}.loader .bot{bottom:0}
-.loader .center{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:22px}
-.loader img{width:110px;height:110px;border-radius:50%;box-shadow:0 0 60px rgba(211,90,36,.45)}
-.loader .count{font-family:var(--display);font-size:.9rem;letter-spacing:.2em;color:var(--steel)}
-.loader .bar{width:160px;height:1px;background:rgba(174,180,189,.2);position:relative;overflow:hidden}
-.loader .bar i{position:absolute;inset:0;background:linear-gradient(90deg,var(--copper),var(--amber));transform-origin:left;transform:scaleX(0)}
+.loader .center{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}
+.loader-emblem{position:relative;width:140px;height:140px;display:grid;place-items:center}
+.loader-orbit{position:absolute;inset:-18px;width:calc(100% + 36px);height:calc(100% + 36px);animation:orbitRotate 7s linear infinite;pointer-events:none}
+.orbit-track{fill:none;stroke:rgba(228,231,235,.07);stroke-width:1.5}
+.orbit-spin{fill:none;stroke:url(#loaderGradient);stroke-width:2.5;stroke-dasharray:65 240;stroke-linecap:round;animation:orbitDash 3s ease-in-out infinite alternate}
+.orbit-glow{fill:none;stroke:var(--amber);stroke-width:1.2;stroke-dasharray:25 280;stroke-linecap:round;filter:blur(2px)}
+.loader-aura{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,rgba(242,160,87,.45) 0%,rgba(211,90,36,.22) 45%,transparent 70%);animation:auraPulse 2.4s ease-in-out infinite;filter:blur(14px);pointer-events:none}
+.loader-logo-img{width:104px;height:104px;border-radius:50%;position:relative;z-index:2;box-shadow:0 0 40px rgba(211,90,36,.55),inset 0 0 15px rgba(242,160,87,.4);animation:emblemBreathe 3s ease-in-out infinite}
+.loader-status{font-family:var(--display);font-size:.72rem;font-weight:500;letter-spacing:.22em;color:var(--amber);text-transform:uppercase;height:16px;opacity:.85;text-align:center}
+.bar-spark{position:absolute;top:-4px;left:0%;width:10px;height:10px;border-radius:50%;background:#FFF;box-shadow:0 0 10px #F2A057,0 0 18px #FFF;transform:translateX(-50%);pointer-events:none;opacity:0}
+@keyframes orbitRotate{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+@keyframes orbitDash{0%{stroke-dashoffset:0}100%{stroke-dashoffset:140}}
+@keyframes auraPulse{0%,100%{transform:scale(.95);opacity:.45}50%{transform:scale(1.15);opacity:.85}}
+@keyframes emblemBreathe{0%,100%{transform:scale(1);filter:brightness(1)}50%{transform:scale(1.03);filter:brightness(1.08)}}
+
+.loader .count{font-family:var(--display);font-size:1.05rem;font-weight:600;letter-spacing:.18em;color:#E4E7EB;text-shadow:0 0 12px rgba(242,160,87,.35)}
+.loader .bar{width:200px;height:2px;background:rgba(174,180,189,.18);border-radius:2px;position:relative;overflow:visible;box-shadow:0 0 10px rgba(0,0,0,.4)}
+.loader .bar i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#D35A24,#F2A057,#FFE2B7);transform-origin:left;transform:scaleX(0);border-radius:2px;box-shadow:0 0 12px rgba(242,160,87,.7)}
 .no-motion .loader{display:none}

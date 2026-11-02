@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: dwarix-backend
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: CLIENT_URL
+        sync: false
+      - key: CORS_ORIGIN
+        sync: false
+      - key: ALLOW_IN_MEMORY_DB
+        value: "false"
+      - key: USE_IN_MEMORY_DB
+        value: "false"

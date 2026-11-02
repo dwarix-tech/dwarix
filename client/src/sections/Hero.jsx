@@ -3,10 +3,11 @@ import gsap from 'gsap';
 import logoImgSrc from '../assets/logo.jpg';
 import ReusableButton from '../components/ReusableButton';
 
-export default function Hero({ onNavigate }) {
+export default function Hero({ onNavigate, isAppLoaded = false }) {
   const canvasRef = useRef(null);
   const heroRef = useRef(null);
   const copyRef = useRef(null);
+  const startTimeRef = useRef(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -18,7 +19,6 @@ export default function Hero({ onNavigate }) {
     let W, H, DPR;
     let parts = [];
     let mark = null;
-    let startTime = null;
     let animId = null;
     let heroVisible = true;
     let mouse = { x: -9e3, y: -9e3 };
@@ -51,7 +51,9 @@ export default function Hero({ onNavigate }) {
       }
       mark = pts;
       build();
-      startTime = performance.now();
+      if (isAppLoaded || prefersReducedMotion) {
+        startTimeRef.current = performance.now();
+      }
     };
 
     function size() {
@@ -121,9 +123,9 @@ export default function Hero({ onNavigate }) {
       const L = layout();
       const settle = prefersReducedMotion
         ? 1
-        : startTime === null
+        : startTimeRef.current === null
         ? 0
-        : ease(Math.min(1, Math.max(0, (now - startTime) / 1000 / 3)));
+        : ease(Math.min(1, Math.max(0, (now - startTimeRef.current) / 1000 / 2.2)));
       const scat = Math.min(1, Math.max(0, window.scrollY / (window.innerHeight * 0.9)));
       const k = Math.max(1 - settle, ease(scat));
 
@@ -209,33 +211,6 @@ export default function Hero({ onNavigate }) {
       parent.addEventListener('pointerleave', handlePointerLeave);
     }
 
-    // Hero copy intro animation
-    if (!prefersReducedMotion && copyRef.current) {
-      const lines = copyRef.current.querySelectorAll('.ln > span');
-      const paragraph = copyRef.current.querySelector('p');
-      const ctas = copyRef.current.querySelector('.ctas');
-
-      gsap.from(lines, {
-        yPercent: 120,
-        stagger: 0.12,
-        duration: 1.1,
-        ease: 'power4.out',
-        delay: 0.2
-      });
-      if (paragraph) {
-        gsap.fromTo(paragraph, 
-          { y: 20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.5 }
-        );
-      }
-      if (ctas) {
-        gsap.fromTo(ctas, 
-          { y: 20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.7 }
-        );
-      }
-    }
-
     return () => {
       isMounted = false;
       logo.onload = null;
@@ -248,6 +223,50 @@ export default function Hero({ onNavigate }) {
       }
     };
   }, []);
+
+  // Orchestrated animation: Logo appears/forms first, then text animates in!
+  useEffect(() => {
+    if (!isAppLoaded) return;
+    if (startTimeRef.current === null) {
+      startTimeRef.current = performance.now();
+    }
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion || !copyRef.current) {
+      if (copyRef.current) {
+        const lines = copyRef.current.querySelectorAll('.ln > span');
+        const paragraph = copyRef.current.querySelector('p');
+        const ctas = copyRef.current.querySelector('.ctas');
+        gsap.set([lines, paragraph, ctas], { opacity: 1, y: 0, yPercent: 0 });
+      }
+      return;
+    }
+
+    const lines = copyRef.current.querySelectorAll('.ln > span');
+    const paragraph = copyRef.current.querySelector('p');
+    const ctas = copyRef.current.querySelector('.ctas');
+
+    // First the logo animation appears and assembles, then after 1.2s delay the text animates in
+    const tl = gsap.timeline({ delay: 1.2 });
+    tl.fromTo(lines, 
+      { yPercent: 120, opacity: 0 },
+      { yPercent: 0, opacity: 1, stagger: 0.14, duration: 1.0, ease: 'power4.out' }
+    )
+    .fromTo(paragraph,
+      { y: 22, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
+      '-=0.4'
+    )
+    .fromTo(ctas,
+      { y: 22, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
+      '-=0.5'
+    );
+
+    return () => {
+      tl.kill();
+    };
+  }, [isAppLoaded]);
 
   const handleLink = (e, href) => {
     e.preventDefault();

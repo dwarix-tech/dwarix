@@ -45,13 +45,13 @@
 .hero h1{font-size:clamp(1.9rem,4.3vw,4.1rem);letter-spacing:-.04em;line-height:1.06;background:linear-gradient(100deg,#fff 0%,#E4E7EB 40%,#F2A057 75%,#D35A24 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 12s ease-in-out infinite;padding-bottom:.06em}
 @keyframes sheen{0%,100%{background-position:0 0}50%{background-position:100% 0}}
 .hero h1 .ln{display:block;overflow:hidden}
-.hero h1 .ln span{display:block;transform:translateY(110%);transition:transform 1.2s cubic-bezier(.2,.8,.1,1);padding-bottom:.08em}
-.loaded .hero h1 .ln span{transform:none}
-.hero h1 .ln:nth-child(2) span{transition-delay:.12s}
-.hero h1 .ln:nth-child(3) span{transition-delay:.24s}
-.hero p{margin:30px 0 40px;font-size:1.18rem;color:#B9BEC6;max-width:52ch;opacity:1;transform:none}
-.hero .ctas{display:flex;gap:14px;flex-wrap:wrap;opacity:1;transform:none}
-.loaded .hero p,.loaded .hero .ctas{opacity:1;transform:none}
+.hero h1 .ln span{display:block;transform:translateY(120%);padding-bottom:.08em;opacity:0}
+
+
+
+.hero p{margin:30px 0 40px;font-size:1.18rem;color:#B9BEC6;max-width:52ch;opacity:0;transform:translateY(20px)}
+.hero .ctas{display:flex;gap:14px;flex-wrap:wrap;opacity:0;transform:translateY(20px)}
+
 .scroll-cue{position:absolute;left:50%;bottom:28px;translate:-50% 0;width:24px;height:40px;border:1.5px solid rgba(228,231,235,.35);border-radius:14px}
 .scroll-cue::after{content:"";position:absolute;left:50%;top:8px;width:3px;height:8px;border-radius:2px;background:var(--amber);translate:-50% 0;animation:cue 2s infinite}
 @keyframes cue{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(12px)}}

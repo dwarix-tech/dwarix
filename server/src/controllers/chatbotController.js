@@ -271,11 +271,13 @@ export const handleChatMessage = async (req, res) => {
     ) {
       return res.json({
         success: true,
-        reply: `You can reach our engineering leadership directly through multiple channels:\n\n• Email: ${email}\n• Phone: ${phone}\n• Location: ${address}\n• LinkedIn: ${linkedin}\n\nOur engineering team reviews project briefs and will connect with you to discuss preliminary scoping.`,
+        reply: `You can reach our engineering leadership directly through multiple channels:\n\n• Email: ${email}\n• Direct Phone & WhatsApp Lines:\n  - +91 93813 80680\n  - +91 85006 60430\n  - +91 79816 13325\n• Location: ${address}\n• LinkedIn: ${linkedin}\n\nOur engineering team reviews project briefs and will connect with you to discuss preliminary scoping.`,
         actionTarget: '#contact',
         emailAction: `mailto:${email}`,
-        callAction: `tel:${phone.replace(/\s+/g, '')}`,
+        callAction: 'tel:+919381380680',
+        whatsappAction: 'https://wa.me/919381380680?text=Hello%20DWARIX%20Technologies',
         links: [
+          { label: 'Chat on WhatsApp ↗', url: 'https://wa.me/919381380680?text=Hello%20DWARIX%20Technologies' },
           { label: 'LinkedIn Profile ↗', url: linkedin }
         ],
         quickReplies: [

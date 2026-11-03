@@ -27,9 +27,22 @@ const companySchema = new mongoose.Schema(
     },
     phone: {
       type: String,
-      default: '+91 7981613325',
+      default: '+91 93813 80680',
       trim: true
     },
+    whatsapp: {
+      type: String,
+      default: 'https://wa.me/919381380680',
+      trim: true
+    },
+    phones: [
+      {
+        formatted: { type: String, default: '+91 93813 80680' },
+        raw: { type: String, default: '9381380680' },
+        tel: { type: String, default: '+919381380680' },
+        wa: { type: String, default: '919381380680' }
+      }
+    ],
     address: {
       street: { type: String, default: 'Rajam' },
       city: { type: String, default: 'Vizianagaram' },

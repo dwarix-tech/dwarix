@@ -357,10 +357,28 @@
 .contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(36px,6vw,90px)}
 .info{display:flex;flex-direction:column;margin-top:40px}
 .info>*{display:grid;grid-template-columns:46px 1fr;gap:14px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line)}
-.info svg{width:22px;height:22px;color:var(--amber)}
+.info .ib svg{width:22px;height:22px;color:var(--amber);flex-shrink:0}
 .info .ib{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:rgba(174,180,189,.07);border:1px solid var(--line)}
 .info small{display:block;color:var(--muted);font-size:.85rem}
 .info span{font-weight:500}
+.info .contact-phone-block{align-items:flex-start}
+.contact-phone-content{display:flex;flex-direction:column;gap:12px;width:100%}
+.contact-phone-list{display:flex;flex-direction:column;gap:10px}
+.contact-phone-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 12px;padding:4px 0}
+.phone-num-link{color:#E4E7EB;text-decoration:none;font-weight:500;font-size:.95rem;transition:color .2s}
+.phone-num-link:hover{color:var(--amber)}
+.phone-actions{display:flex;align-items:center;gap:6px}
+.phone-action-pill{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:4px 10px;border-radius:999px;font-size:.74rem;font-weight:600;line-height:1;text-decoration:none;box-sizing:border-box;transition:transform .2s,background .2s,color .2s,border-color .2s}
+.phone-action-pill:hover{transform:translateY(-1px)}
+.phone-action-pill svg{display:inline-block;vertical-align:middle;flex-shrink:0;margin:0}
+.phone-action-pill span{display:inline-block;line-height:1;vertical-align:middle}
+.call-pill{background:rgba(242,160,87,.12);color:var(--amber);border:1px solid rgba(242,160,87,.35)}
+.call-pill svg{width:12px!important;height:12px!important;color:currentColor}
+.call-pill:hover{background:rgba(242,160,87,.25);color:#FFF}
+.wa-pill{background:rgba(37,211,102,.12);color:#25D366;border:1px solid rgba(37,211,102,.35)}
+.wa-pill svg{width:13px!important;height:13px!important;color:#25D366}
+.wa-pill:hover{background:rgba(37,211,102,.25);color:#FFF;border-color:#25D366}
+.wa-pill:hover svg{color:#FFF}
 #form,form.contact-form{background:linear-gradient(160deg,rgba(46,50,59,.7),rgba(34,38,46,.5));border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(24px,4vw,44px);display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .f{display:flex;flex-direction:column;gap:7px}
 .f.full{grid-column:1/-1}

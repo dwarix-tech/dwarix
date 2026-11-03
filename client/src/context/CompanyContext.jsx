@@ -17,7 +17,8 @@ export function CompanyProvider({ children }) {
       phone: d.phone || COMPANY.phone,
       phoneFormatted: d.phone || COMPANY.phoneFormatted,
       phoneTel: (d.phone || COMPANY.phone).replace(/\s+/g, ''),
-      whatsapp: d.whatsapp || '+91 79816 13325',
+      phones: COMPANY.phones,
+      whatsapp: d.whatsapp || COMPANY.whatsapp,
       workingHours: d.workingHours || 'Mon – Sat, 9:00 AM – 7:00 PM IST',
       address: {
         street: d.address?.street || COMPANY.address.street,

@@ -313,7 +313,13 @@ export const seedDatabase = async (options = {}) => {
       tagline: 'Architecting Intelligent Systems & Scalable Digital Products',
       description: 'DWARIX Technologies delivers high-performance full-stack web and mobile systems, machine learning pipelines, and creative AI tooling with uncompromising craftsmanship.',
       email: 'dwarixtech@gmail.com',
-      phone: '+91 7981613325',
+      phone: '+91 93813 80680',
+      whatsapp: 'https://wa.me/919381380680',
+      phones: [
+        { formatted: '+91 93813 80680', raw: '9381380680', tel: '+919381380680', wa: '919381380680' },
+        { formatted: '+91 85006 60430', raw: '8500660430', tel: '+918500660430', wa: '918500660430' },
+        { formatted: '+91 79816 13325', raw: '7981613325', tel: '+917981613325', wa: '917981613325' }
+      ],
       address: {
         street: 'Rajam',
         city: 'Vizianagaram',

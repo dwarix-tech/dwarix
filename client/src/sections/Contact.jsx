@@ -237,17 +237,46 @@ export default function Contact({ preselectedService, selectedService, onClearSe
               </p>
             </a>
 
-            <a href={`tel:${company.phoneTel || '+917981613325'}`} style={{ color: 'inherit', textDecoration: 'none' }} aria-label="Call DWARIX Technologies">
+            <div className="contact-phone-block">
               <span className="ib">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
                   <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1Z" />
                 </svg>
               </span>
-              <p>
-                <small>Phone</small>
-                <span>{company.phoneFormatted || company.phone || '+91 79816 13325'}</span>
-              </p>
-            </a>
+              <div className="contact-phone-content">
+                <small>Call &amp; WhatsApp Direct Lines</small>
+                <div className="contact-phone-list">
+                  {(company.phones || COMPANY.phones).map((p) => (
+                    <div key={p.raw} className="contact-phone-row">
+                      <a href={`tel:${p.tel}`} className="phone-num-link" aria-label={`Call ${p.formatted}`}>
+                        <span>{p.formatted}</span>
+                      </a>
+                      <div className="phone-actions">
+                        <a href={`tel:${p.tel}`} className="phone-action-pill call-pill" aria-label={`Call ${p.formatted}`} title="Call Now">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="12" height="12" aria-hidden="true">
+                            <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1Z" />
+                          </svg>
+                          <span>Call</span>
+                        </a>
+                        <a
+                          href={`https://wa.me/${p.wa}?text=Hello%20DWARIX%20Technologies,%20I%20would%20like%20to%20discuss%20a%20project.`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="phone-action-pill wa-pill"
+                          aria-label={`Chat on WhatsApp with ${p.formatted}`}
+                          title="Chat on WhatsApp"
+                        >
+                          <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13" aria-hidden="true">
+                            <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.964 9.964 0 0 0 1.333 4.993L2 22l5.233-1.237a9.994 9.994 0 0 0 4.779 1.217h.004c5.505 0 9.988-4.478 9.989-9.984 0-2.669-1.037-5.176-2.925-7.062A9.925 9.925 0 0 0 12.012 2zm5.827 14.167c-.242.68-1.402 1.303-1.954 1.383-.493.072-1.121.102-3.235-.773-2.697-1.116-4.439-3.858-4.572-4.037-.133-.18-1.082-1.439-1.082-2.744 0-1.305.688-1.947.933-2.213.243-.266.536-.333.717-.333.181 0 .362.002.52.01.168.01.394-.063.616.471.229.549.78 1.895.848 2.032.068.138.113.3.023.48-.09.18-.135.293-.271.453-.135.16-.282.358-.406.48-.136.136-.277.283-.119.555.158.271.701 1.156 1.503 1.87 1.032.919 1.902 1.203 2.173 1.339.271.135.43.113.588-.068.158-.18.678-.79.859-1.061.18-.271.362-.226.61-.136.248.09 1.58.745 1.851.88.271.135.452.203.52.316.068.113.068.655-.174 1.335z" />
+                          </svg>
+                          <span>WhatsApp</span>
+                        </a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
 
             <div>
               <span className="ib">

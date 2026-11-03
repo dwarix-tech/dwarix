@@ -343,8 +343,8 @@ export default function Chatbot({ onNavigate, onSelectService }) {
                     )}
 
                     {/* Quick Direct Actions */}
-                    {(msg.emailAction || msg.callAction) && (
-                      <div style={{ display: 'flex', gap: '8px', marginTop: '10px' }}>
+                    {(msg.emailAction || msg.callAction || msg.whatsappAction) && (
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '10px' }}>
                         {msg.emailAction && (
                           <a href={msg.emailAction} className="cb-link-pill">
                             <Mail size={13} />
@@ -355,6 +355,20 @@ export default function Chatbot({ onNavigate, onSelectService }) {
                           <a href={msg.callAction} className="cb-link-pill">
                             <Phone size={13} />
                             <span>Call Directly</span>
+                          </a>
+                        )}
+                        {msg.whatsappAction && (
+                          <a
+                            href={msg.whatsappAction}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="cb-link-pill"
+                            style={{ color: '#25D366', borderColor: 'rgba(37,211,102,0.35)' }}
+                          >
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13" style={{ display: 'block', flexShrink: 0 }} aria-hidden="true">
+                              <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.964 9.964 0 0 0 1.333 4.993L2 22l5.233-1.237a9.994 9.994 0 0 0 4.779 1.217h.004c5.505 0 9.988-4.478 9.989-9.984 0-2.669-1.037-5.176-2.925-7.062A9.925 9.925 0 0 0 12.012 2zm5.827 14.167c-.242.68-1.402 1.303-1.954 1.383-.493.072-1.121.102-3.235-.773-2.697-1.116-4.439-3.858-4.572-4.037-.133-.18-1.082-1.439-1.082-2.744 0-1.305.688-1.947.933-2.213.243-.266.536-.333.717-.333.181 0 .362.002.52.01.168.01.394-.063.616.471.229.549.78 1.895.848 2.032.068.138.113.3.023.48-.09.18-.135.293-.271.453-.135.16-.282.358-.406.48-.136.136-.277.283-.119.555.158.271.701 1.156 1.503 1.87 1.032.919 1.902 1.203 2.173 1.339.271.135.43.113.588-.068.158-.18.678-.79.859-1.061.18-.271.362-.226.61-.136.248.09 1.58.745 1.851.88.271.135.452.203.52.316.068.113.068.655-.174 1.335z" />
+                            </svg>
+                            <span>WhatsApp Chat</span>
                           </a>
                         )}
                       </div>
